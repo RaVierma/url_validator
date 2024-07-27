@@ -135,7 +135,6 @@ async fn validate_csv_url(
     out_file: String,
     timeout: u32,
 ) -> Result<(), std::io::Error> {
-    // println!("{} {} {}", csv_file, url_column, out_file);
     let pth = Path::new(&csv_file);
     if !pth.is_file() {
         panic!("=> File not found... ");
