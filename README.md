@@ -39,5 +39,5 @@ Now you're ready to install the  url_validator. Clone this repository and build 
 
 - Valid the csv contain urls in column 'website_col1'. Output filename is 'output_filename'.csv and timeout is 5 secs.
 ```bash
-    ./mini-blockchain -c /path/to/file.csv -o output_filename.csv -c website_col1 -t 5
+    ./url_validator -c /path/to/file.csv -o output_filename.csv -c website_col1 -t 5
 ```
