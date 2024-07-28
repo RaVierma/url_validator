@@ -3,7 +3,7 @@ This is a URL validator written in Rust in programming language. This also suppo
 
 ## Features
 
-- **Single Url**: You can validate single url.
+- **Single or Mulitple Url**: You can validate single url or you can provide comma separated multiple ulrs.
 - **CSV**: You can also validate csv having url.
 - **timeout**: You also have option to specify the request timeout.
 
@@ -35,6 +35,11 @@ Now you're ready to install the  url_validator. Clone this repository and build 
 - Check the url status of below site with timeout 5 secs.
 ```bash
     ./url_validator validateurl -u https://www.example.com -t 5
+```
+
+- Check the multiple url status with timeout 5 secs.
+```bash
+    ./url_validator validateurl -u https://www.example.com,https://www.example2.com -t 5
 ```
 
 - Valid the csv contain urls in column 'website_col1'. Output filename is 'output_filename'.csv and timeout is 5 secs.

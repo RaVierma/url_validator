@@ -21,7 +21,7 @@ struct Opt {
 enum Command {
     #[structopt(name = "validateurl", about = "Validate the url")]
     ValidateUrl {
-        #[structopt(short, long, name = "url", help = "Url you want to validate")]
+        #[structopt(short, long, name = "url", help = "Url/urls you want to validate. Multiple urls must be comman separated")]
         url: String,
         #[structopt(short, long, name = "timeout", help = "How long wait for response")]
         timeout: u32,
@@ -102,13 +102,24 @@ async fn check_url(url: String, timeout: u32) -> Result<String, Error> {
     }
 }
 
-async fn validate_url(url: String, timeout: u32) -> Result<(), std::io::Error> {
+async fn validate_url(urls: String, timeout: u32) -> Result<(), std::io::Error> {
     println!("*** Validating the url ... ***");
-    let url_chk = check_url(url.clone(), timeout).await;
-    if url_chk.is_err() {
-        println!("=> {} is {}", url, url_chk.err().unwrap().to_string());
-    } else {
-        println!("=> {} is {}", url, url_chk.unwrap());
+    let mut tasks = vec![];
+    for url in urls.split(",") {
+        let url = url.to_string();
+        let task = tokio::task::spawn(async move {
+            let url_chk = check_url(url.clone(), timeout).await;
+            if url_chk.is_err() {
+                println!("=> {} is {}", url, url_chk.err().unwrap().to_string());
+            } else {
+                println!("=> {} is {}", url, url_chk.unwrap());
+            }
+        });
+        tasks.push(task);
+    }
+
+    for task in tasks {
+        let _ = task.await.unwrap();
     }
 
     Ok(())
