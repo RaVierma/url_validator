@@ -15,7 +15,7 @@ Before installing the URL Vlaidator, ensure you have the following prerequisites
 
 Now you're ready to install the  url_validator. Clone this repository and build the application using Cargo:
 ```bash
-    git clone https://github.com/your_username/url_validator.git
+    git clone https://github.com/RaVierma/url_validator.git
     cd url_validator
     cargo build --release
 ```
