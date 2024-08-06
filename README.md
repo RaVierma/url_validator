@@ -1,5 +1,5 @@
 # URL Validator (In Rust)
-This is a URL validator written in Rust in programming language. This also support bulk url validation.
+This is a URL validator written in Rust in programming language. It is useful tool for find broken/not working urls. This also support bulk url validation.
 
 ## Features
 
